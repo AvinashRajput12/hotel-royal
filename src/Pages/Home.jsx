@@ -22,6 +22,7 @@ function Home({ showBook }) {
         >
           Book Your Stay
         </button>
+        
       </div>
     </div>
   );

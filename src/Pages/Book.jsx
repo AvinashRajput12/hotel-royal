@@ -1,96 +1,105 @@
-import { useState } from "react";
-
-function Book() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    contact: "",
-    address: "",
-  });
-
-  const [message, setMessage] = useState("");
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const { name, email, contact, address } = formData;
-
-    if (name === "" || email === "" || contact === "" || address === "") {
-      setMessage("⚠️ Please fill all fields!");
-      return;
-    }
-
-    setMessage("🎉 Booking Successfully Done!");
-
-    setFormData({
-      name: "",
-      email: "",
-      contact: "",
-      address: "",
-    });
-  };
-
+function Book({ setShowBookPage }) {
   return (
-    <div className="container mt-5 d-flex justify-content-center">
-      <div className="booking-card">
+    <div className="container py-4">
+      <div
+        className="card shadow-lg border-0 mx-auto"
+        style={{
+          maxWidth: "500px",
+          borderRadius: "15px",
+        }}
+      >
+        <div className="card-header bg-dark text-white text-center">
+          <h3 className="mb-0">🏨 Book Your Stay</h3>
+        </div>
 
-        <h2 className="text-center mb-3">Book Your Stay</h2>
+        <div className="card-body">
+          <form>
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Full Name
+              </label>
 
-        <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                className="form-control form-control-sm"
+                placeholder="Enter your name"
+              />
+            </div>
 
-          <input
-            type="text"
-            name="name"
-            className="form-control mb-3"
-            placeholder="Enter Name"
-            value={formData.name}
-            onChange={handleChange}
-          />
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Email
+              </label>
 
-          <input
-            type="email"
-            name="email"
-            className="form-control mb-3"
-            placeholder="Enter Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+              <input
+                type="email"
+                className="form-control form-control-sm"
+                placeholder="Enter your email"
+              />
+            </div>
 
-          <input
-            type="number"
-            name="contact"
-            className="form-control mb-3"
-            placeholder="Enter Contact"
-            value={formData.contact}
-            onChange={handleChange}
-          />
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Mobile Number
+              </label>
 
-          <textarea
-            name="address"
-            className="form-control mb-3"
-            placeholder="Enter Address"
-            value={formData.address}
-            onChange={handleChange}
-          ></textarea>
+              <input
+                type="tel"
+                className="form-control form-control-sm"
+                placeholder="Enter mobile number"
+              />
+            </div>
 
-          <button className="btn btn-success w-50 d-block mx-auto">
-            Confirm Booking
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Check-In Date
+              </label>
+
+              <input
+                type="date"
+                className="form-control form-control-sm"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Check-Out Date
+              </label>
+
+              <input
+                type="date"
+                className="form-control form-control-sm"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Number of Guests
+              </label>
+
+              <input
+                type="number"
+                min="1"
+                className="form-control form-control-sm"
+                placeholder="Guests"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-success btn-sm w-100"
+            >
+              Confirm Booking
+            </button>
+          </form>
+
+          <button
+            className="btn btn-outline-secondary btn-sm w-100 mt-2"
+            onClick={() => setShowBookPage(false)}
+          >
+            ← Back To Home
           </button>
-
-        </form>
-
-        {/* MESSAGE */}
-        <p className={message.includes("Successfully") ? "success" : "warning"}>
-        {message}
-        </p>
-
+        </div>
       </div>
     </div>
   );
